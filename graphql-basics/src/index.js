@@ -7,7 +7,9 @@ import Post from './resolvers/Post';
 import Comment from './resolvers/Comment';
 
 const server = new GraphQLServer({
+    // provide the type definitions stored in the graphql file
     typeDefs: './src/schema.graphql',
+    // Here is providing the resolvers
     resolvers: {
         Query,
         Mutation,
@@ -15,6 +17,8 @@ const server = new GraphQLServer({
         Post,
         Comment
     },
+    // Here provides the database for being use in the context (ctx)
+    // variable in resolvers so you can access ctx.db for example
     context: {
         db
     }

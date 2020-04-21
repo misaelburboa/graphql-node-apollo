@@ -1,4 +1,6 @@
 const Query = {
+    // The resolvers functions always receive 4 params
+    // commonly named: parent, args, ctx, info
     users(parent, args, { db }, info) {
         if (!args.query) {
             return db.users;

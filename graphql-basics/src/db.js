@@ -71,6 +71,6 @@ const db = {
     users,
     posts,
     comments
-}
+};
 
 export { db as default };
