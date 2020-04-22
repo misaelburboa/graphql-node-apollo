@@ -1,10 +1,13 @@
-import { GraphQLServer } from 'graphql-yoga';
+import { GraphQLServer, PubSub } from 'graphql-yoga';
 import db from './db';
 import Query from './resolvers/Query';
 import Mutation from './resolvers/Mutation';
+import Subscription from './resolvers/Subscription';
 import User from './resolvers/User';
 import Post from './resolvers/Post';
 import Comment from './resolvers/Comment';
+
+const pubsub = new PubSub();
 
 const server = new GraphQLServer({
     // provide the type definitions stored in the graphql file
@@ -13,6 +16,7 @@ const server = new GraphQLServer({
     resolvers: {
         Query,
         Mutation,
+        Subscription,
         User,
         Post,
         Comment
@@ -20,7 +24,8 @@ const server = new GraphQLServer({
     // Here provides the database for being use in the context (ctx)
     // variable in resolvers so you can access ctx.db for example
     context: {
-        db
+        db,
+        pubsub
     }
 });
 

@@ -15,16 +15,16 @@ const users = [{
 }];
 
 const posts = [{
-    id: '1',
+    id: "1",
     title: 'My Post title',
     body: 'This is my first post',
-    published: false,
+    published: true,
     author: "1"
 },{
     id: '2',
     title: 'My Second Post title',
     body: 'This is my second post',
-    published: true,
+    published: false,
     author: "1"
 },{
     id: '3',
