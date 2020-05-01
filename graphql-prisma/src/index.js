@@ -22,7 +22,7 @@ const server = new GraphQLServer({
         Post,
         Comment
     },
-    // Here provides the database for being use in the context (ctx)
+    // Here provides the arguments for being use in the context (ctx)
     // variable in resolvers so you can access ctx.db for example
     context: {
         db,
