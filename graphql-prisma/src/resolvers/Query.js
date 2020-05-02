@@ -1,6 +1,10 @@
 const Query = {
     // The resolvers functions always receive 4 params
-    // commonly named: parent, args, ctx, info
+    // commonly named: 
+    // parent: This is used incase we are accessing complex data
+    // args: received in the mutation for example
+    // ctx: The context setup
+    // info: Object containing the information of the operation made from the client
     users(parent, args, { prisma }, info) {
         const operationArgs = {};
 
