@@ -27,12 +27,14 @@ const Mutation = {
     },
     async createPost(parent, args, { prisma }, info) {
         return await prisma.mutation.createPost({
-            data: args.data.title,
-            body: args.data.body,
-            published: args.data.published,
-            author: {
-                connect: {
-                    id: args.data.author
+            data: {
+                title: args.data.title,
+                body: args.data.body,
+                published: args.data.published,
+                author: {
+                    connect: {
+                        id: args.data.author
+                    }
                 }
             }
         }, info);
