@@ -24,10 +24,13 @@ const server = new GraphQLServer({
     },
     // Here provides the arguments for being use in the context (ctx)
     // variable in resolvers so you can access ctx.db for example
-    context: {
-        db,
-        pubsub,
-        prisma
+    context(request) {
+        return {
+            db,
+            pubsub,
+            prisma,
+            request
+        };
     }
 });
 
