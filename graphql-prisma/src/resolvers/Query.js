@@ -6,7 +6,7 @@ const Query = {
     // parent: This is used incase we are accessing complex data
     // args: received in the mutation for example
     // ctx: The context setup
-    // info: Object containing the information of the operation made from the client
+    // info: Object containing the information of the operation made from the client (parameter that were required)
     users(parent, args, { prisma }, info) {
         const operationArgs = {};
 
@@ -14,8 +14,6 @@ const Query = {
             operationArgs.where = {
                 OR: [{
                     name_contains: args.query
-                }, {
-                    email_contains: args.query
                 }]
             };
         }

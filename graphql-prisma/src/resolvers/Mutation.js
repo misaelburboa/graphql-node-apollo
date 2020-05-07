@@ -70,6 +70,21 @@ const Mutation = {
             }
         });
 
+        const isPublished = await prisma.exists.Post({
+            id: args.id,
+            published: true
+        });
+
+        if (isPublished && args.data.published === false) {
+            await prisma.mutation.deleteManyComments({
+                where: {
+                    post: {
+                        id: args.id
+                    }
+                }
+            });
+        }
+
         if (!postExists) {
             throw new Error('Could not find the post. unable to delete');
         }
@@ -100,8 +115,16 @@ const Mutation = {
             }
         }, info);
     },
-    createComment(parent, args, { prisma, request }, info) {
+    async createComment(parent, args, { prisma, request }, info) {
         const userId = getUserId(request);
+        const isPostPublished = await prisma.exists.Post({
+            id: args.data.post,
+            published: true
+        });
+
+        if (!isPostPublished) {
+            throw new Error('The post you\'re trying to comment is not available');
+        }
         
         return prisma.mutation.createComment({
             data: {
