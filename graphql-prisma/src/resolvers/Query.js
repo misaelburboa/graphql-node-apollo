@@ -8,7 +8,10 @@ const Query = {
     // ctx: The context setup
     // info: Object containing the information of the operation made from the client (parameter that were required)
     users(parent, args, { prisma }, info) {
-        const operationArgs = {};
+        const operationArgs = {
+            first: args.first,
+            skip: args.skip
+        };
 
         if (args.query) {
             operationArgs.where = {
@@ -22,6 +25,8 @@ const Query = {
     },
     posts(parent, args, { prisma }, info) {
         const opArgs = {
+            first: args.first,
+            skip: args.skip,
             where: {
                 published: true
             }

@@ -1,7 +1,7 @@
 type Query {
     # This functions are located in resolvers (resolvers/Query.js)
-    users(query: String): [User!]!
-    posts(query: String): [Post!]!
+    users(query: String, first: Int, skip: Int): [User!]!
+    posts(query: String, first: Int, skip: Int): [Post!]!
     comments: [Comment!]!
     me: User!
     post(id: ID!): Post!
