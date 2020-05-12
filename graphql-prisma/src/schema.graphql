@@ -1,11 +1,11 @@
 type Query {
     # This functions are located in resolvers (resolvers/Query.js)
-    users(query: String, first: Int, skip: Int): [User!]!
-    posts(query: String, first: Int, skip: Int): [Post!]!
-    comments: [Comment!]!
+    users(query: String, first: Int, skip: Int, after: String): [User!]!
+    posts(query: String, first: Int, skip: Int, after: String): [Post!]!
+    comments(first: Int, skip: Int, after: String): [Comment!]!
     me: User!
     post(id: ID!): Post!
-    myPosts(query: String): [Post!]!
+    myPosts(query: String, first: Int, skip: Int, after: String): [Post!]!
 }
 
 type Mutation {
@@ -77,6 +77,8 @@ type User {
     password: String!
     posts: [Post!]!
     comments: [Comment!]!
+    updatedAt: String
+    createdAt: String!
 }
 
 type Post {
@@ -86,6 +88,8 @@ type Post {
     published: Boolean!
     author: User!
     comments: [Comment!]!
+    updatedAt: String
+    createdAt: String!
 }
 
 type Comment {
@@ -93,6 +97,8 @@ type Comment {
     text: String!
     author: User
     post: Post!
+    updatedAt: String
+    createdAt: String!
 }
 
 enum MutationType {
