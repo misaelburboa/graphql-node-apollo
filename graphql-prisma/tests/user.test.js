@@ -122,3 +122,21 @@ test('Should not login with bad credentials', async () => {
 
     await expect(client.mutate({ mutation: login })).rejects.toThrow();
 });
+
+test('Should not signup user with invalid password', async () => {
+    const createUser = gql `
+        mutation {
+            createUser(
+                data: {
+                    name: "Ale",
+                    email: "ale.ozuna@hotmail.com",
+                    password: "123"
+                }
+            ) {
+                token
+            }
+        }
+    `;
+
+    await expect(client.mutate({ mutation: createUser })).rejects.toThrow();
+});
