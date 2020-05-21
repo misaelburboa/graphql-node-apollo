@@ -28,9 +28,9 @@ test('Should expose public posts', async () => {
 
 test('Should fetch users posts', async () => {
     const client = getClient(userOne.jwt);
-    const getPosts = gql`
+    const myPosts = gql`
         query {
-            posts {
+            myPosts {
                 id
                 title
                 body
@@ -39,8 +39,8 @@ test('Should fetch users posts', async () => {
         }
     `;
 
-    const { data } = await client.query({ query: getPosts });
-    expect(data.posts.length).toBe(2);
+    const { data } = await client.query({ query: myPosts });
+    expect(data.myPosts.length).toBe(2);
 });
 
 test('Should be able to update own post', async () => {
