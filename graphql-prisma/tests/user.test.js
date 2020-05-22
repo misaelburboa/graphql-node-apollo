@@ -1,6 +1,5 @@
 import '@babel/polyfill';
 import 'cross-fetch/polyfill';
-import { gql } from 'apollo-boost';
 import prisma from '../src/prisma';
 import seedDatabase, { userOne } from './utils/seedDatabase';
 import getClient from './utils/getClient';
@@ -9,8 +8,6 @@ import { createUser, login, getUsers, getProfile } from './utils/operations';
 const client = getClient();
 
 beforeEach(seedDatabase);
-
-
 
 test('Should create a new user', async () => {
     const variables = {
