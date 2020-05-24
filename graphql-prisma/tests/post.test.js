@@ -1,6 +1,5 @@
 import '@babel/polyfill';
 import 'cross-fetch/polyfill';
-import { gql } from 'apollo-boost';
 import prisma from '../src/prisma';
 import seedDatabase, { userOne, postOne, postTwo } from './utils/seedDatabase';
 import getClient from './utils/getClient';
@@ -8,6 +7,9 @@ import { getPosts, myPosts, updatePost, createPost, deletePost } from './utils/o
 
 const client = getClient();
 
+beforeAll(async () => {
+    jest.setTimeout(1000000);
+});
 beforeEach(seedDatabase);
 
 test('Should expose public posts', async () => {

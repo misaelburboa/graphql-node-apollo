@@ -7,6 +7,9 @@ import { createUser, login, getUsers, getProfile } from './utils/operations';
 
 const client = getClient();
 
+beforeAll(async () => {
+    jest.setTimeout(1000000);
+});
 beforeEach(seedDatabase);
 
 test('Should create a new user', async () => {
